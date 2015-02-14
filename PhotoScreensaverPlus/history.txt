@@ -1,0 +1,115 @@
+﻿1.8
+- Lepší náhodnost adresářů a fotek (třída Random se neinstancuje s každým novým požadavkem na náhodné číslo)
+- Ošetření chyby při vykreslování EXIF (nevykreslovaly se všechny informace, protože to přestalo vykreslovat po chybě čtení jedné z nich)
+- Nové logování pomocí NLog (do adreáře AppData/Local/PhotoScreensaverPlus/logs/)
+	- Pro bezproblémové zaregistrování NLog do GAC jsem musel vytvořit konzolovou aplikaci PsspInstallUtils, která se volá v rámci instalace. Nechci totiž řešit cesty ke GACUtil.exe v různých .NET frameworcích.
+1.7
+- Klávesová zkratka na GTF, který ale pokračuje od aktuální fotky (Alt+F)
+- Klávesová zkratka na začít znovu GTF od první fotky (Ctrl+F)
+- Pokud je při zapnutí spořiče zapnuté GTF, pokračuje v adresáři naposledy promítané fotky minule (a od ní)
+- Nastavení, v jakém se má modu spustit spořič obsahuje i "jako posledně"
+- Nastavení, zda GTF má jít na náhodný adresář
+1.6
+- zkratka exclude adresáře změněna na Alt+S
+- správné kódování ImageTitle, ImageDescription a UserComment (včetně editace)!!!
+- při spuštění GTF se po skončení adresáře prochází další adresář v pořadí
+1.5
+- excludované adresáře a soubory
+- nenačítají se hidden adresáře
+1.4
+- Změněn způsob načítání fotek - načtou se pouze adresáře a před každým promítnutím se z vybraného adresáře načte náhodná fotka
+	Pak se tento adresář vyřadí. Když se vyřadí všechny adresáře, načtou se znovu - tzn. v jednom kole se projdou všechny adresáře
+	a zkaždého se načte jen jedna fotka. Proto se ukázují více fotky z různých adresářů - je to pestřejší.
+- Je možné zadat soubor s fotkama, ze kterých se má promítat (promítají se náhodně, ale vždy všechny nejdříve, před fotkami z adresářů)
+- klávesa Alt+F začne promítání adresáře od začátku (bez ohledu na to, zda se zrovna prochází adresář, nebo ne)
+- klávesa S otevře nastavení (Settings)
+- Opraveno zobrazování EXIFu (nezobrazuje se titulek pro prázdnou hodnotu, nedělá se prázdný řádek když v exifu není info o flashi)
+1.3
+- opravené načítání data a času z EXIFu
+- opravené zjištění verze na serveru
+1.2
+- postupné ztmavení předchozího obrázku při přechodu na další díky timeru
+- T - skrytí a zobrazení času, počtu fotek, doby spuštění
+- Při F (go through folder) se zobrazuje počet snímku a pořadí v adresáři
+- komplexní refaktoring - rozhození odpovědnosti do více tříd (vytvoření MainClass) atd.
+- přehození významu šipek nahoru a dolu
+- opravené spuštění na více monitorech
+- podpora pro TIF, GIF, PNG
+- exit only with esc
+- promítání z adresáře přes pravé tlačítko myši (zapnuto GTF)
+- opravena chyba s bílou obrazovkou. Po show() na formulari se musi zavolat jeste Update(), nebo neco jineho, co ji znovu překreslí
+- opravena chyba, kdy se nezobrazoval EXIF
+1.1 
+- opravena chyba, kdyz se nepodarilo nacist soubor
+- zlepseno logovani
+- zlepšeno uvolňování paměti (better memory management)
+- založení logsource pomocí spuštění spořiče s parametrem /l
+1.0 Oficiální distribuce
+- ikona
+- instalator
+- kontrola aktualizací
+- ošetření na spouštení pouze jedné instance - když se screensaver spustí ručně, nepustí se druhá instance
+- cache na 10 předchozích obrázků
+- Double buffering na vykreslování
+- Překreslení kompozice při skrytí textů (exif)
+- Try-catch na vykreslování obrázku
+- možnost nastavení interpolace
+- lehké "odsazení" exifu a dalších textů šedivým obdélníkem (možno vypnout v nastavení)
+- zašedění při vyběhnutí dialogu (např. mazání)
+- Alt (resp. Alt+Tab) nevypne spořič
+- opraven problém s bílou úvodní obrazovkou (neclearoval jsem ji)
+- W - přechod na webovou stránku screensaveru
+0.9
+- přejmenování na Photo Screen Saver Plus
+0.8
+- opraveno načítání fotek (při preview) 
+	- preview neukazuje fotky
+	- try catch na chyby při načítání z disku
+	- načítání jede ve vlastním vlákně (přes událost)
+- Opraveno vyřazení už prošlých fotek
+- Neopakuje se první z adresáře, když se předtím na ní dalo F
+0.7
+- Ukládání cesty k aktuálním obrázku do souboru (F1 - F5)
+- DRY přístup - projde nejdříve všechny a pak sestaví index znovu
+- Uložení posledních 10 prezentovaných do příštího spuštění
+0.6
+- opraven problém nedostatečných práv pro zapisování do logu pod Vista
+	-jestliže jsi normal user, tak se ti při prvním spuštění zeptá na admin heslo
+- M - editace metadat z exifu
+- D - zobrazení data (z exifu, nebo editace souboru)
+- R - rotate right
+- L - rotate left
+- Nově pojmenované akce
+	- N - file name
+	- F - turn on/off mode "go through folder"
+- H - help
+0.5
+- podpora pro Flash v Exifu
+- podpora pro User comment v Exifu
+- mod procházení fotek v adresáři
+	- nastavení v settings
+	- klávesa D
+0.4
+- nastavení více adresářů pro fotky
+- nastavení velikosti fontu Exifu a názvu souboru
+- parsování data a času expozice
+- oprava výpočtu času expozice
+0.3
+- otáčení fotky podle exifu
+- E zobrazení EXIF (výchozí hodnota v nastavení)
+
+0.2 - 27. 12. 2008
+- increase/decrease speed of presentation (interval) by Up/Down arrow
+- Set show file name in settings
+- C - copy to defined folder
+- Delete - delete images
+0.1 - 26. 12. 2008
+    * It shows random jpg files from selected folder and subfolders with control
+          o Left arrow - return to previous image
+          o Right arrow - show next image
+          o Spacebar - pause/play presentation
+          o F - show file name and path of current image  
+    * In the screensaver settings you can
+          o set root folder of images
+          o set time interval between images
+          o set background color for images

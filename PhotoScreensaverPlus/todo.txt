@@ -1,0 +1,26 @@
+﻿- Oprava Nullreference při spuštění náhledu v nastavování creensaveru
+- Klávesa O otevře Průzkumníka v adresáři aktuální fotky
+- Při pauze zobrazit symbol pauzy přes obrázek
+- Podívat se na tu dobu promítání, vypadá to, že při přepínání GTF se produlžuje
+- zobrazení pořadí fotky v adresáři i mimo GTF
+- nápovědu jako bitmapu
+
+- Myš vypne/nevypne spořič
+	- Po 5 sec. se skryje ukazatel myši, pohnutím se znovu objeví
+	- Kliknutí myši vypne/nevypne
+- Výběr adresáře na promítání
+
+- když jsem poprvé spustil screensaver a nikde nic nebylo, tak se nedala Pictures cesta a nebylo co promitat
+- DNG
+- načítání obrázků z předgenerovaného seznamu ze souboru F1 - F5
+	- udělat to v kombinaci s klávesami F1 - např. na Shïft F1 promítat fotky pouze ze souboru F1
+	- zrušení promítání z těchto seznamů pomocí nějaké kobinace kláves
+- udělat klávesy na 
+	- přechod na následující/předchozí adresář (Ctrl+P, Ctrl+N)
+- zjistit proč je potřeba udělat ten Refresh() po zobrazení okna, proč se to ještě jednou překreslí (je to i u preview)
+- udělat přípravu obrázku pro každou obrazovku a pak je najednou všechny vykreslit (aby tam nebyl časový posun)
+	- před tím jejich vykreslením udělat to postupné skrytí předchozích tak, aby tam byl přesně definovaný čas mezi skrytím a zobrazením dalšího (teď záleží na době nahrání nového obrázku)
+- vyřešit vypnutí myši po dobu zobrazení dialogů (aby se myší dalo kliknout na volbu v dialogu)
+- na klávesu otevřít dialog na výběr adresáře pro procházení (jako slide show)
+- internacionalizace
+- video
