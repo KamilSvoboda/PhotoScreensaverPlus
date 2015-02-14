@@ -65,11 +65,18 @@ namespace PhotoScreensaverPlus
                         logger.Info("Screensaver started in preview mode");
                         //LogWriter.WriteLog("Preview showed", EventLogEntryType.Information);
 
-                        var f = new MainForm(new IntPtr(long.Parse(args[1])), mainCl);
-                        f.Show();
-                        f.Refresh(); //nevím proč, ale musí tady být kvůli tomu aby se vykreslila ta bitmapa
-                        Application.Run(f);
-                        //Application.Run(); //args[1] is the handle to the preview window
+                        if (args.Length > 1)
+                        {
+                            var f = new MainForm(new IntPtr(long.Parse(args[1])), mainCl);
+                            f.Show();
+                            f.Refresh(); //nevím proč, ale musí tady být kvůli tomu aby se vykreslila ta bitmapa
+                            Application.Run(f);
+                            //Application.Run(); //args[1] is the handle to the preview window
+                        }
+                        else
+                        {
+                            logger.Error("Chybné parametry - chybí identifikace rodičovského okna pro preview");
+                        }
                     }
                     else if (args[0].ToLower().Trim().Substring(0, 2) == "/c") //configure
                     {
