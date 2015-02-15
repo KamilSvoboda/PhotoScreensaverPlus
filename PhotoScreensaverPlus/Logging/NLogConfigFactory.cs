@@ -22,8 +22,8 @@ namespace PhotoScreensaverPlus.Logging
             fileTarget.ArchiveFileName = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "/PhotoScreensaverPlus/logs/{#}.txt";
             fileTarget.ArchiveEvery = FileArchivePeriod.Day;
             fileTarget.ArchiveNumbering = ArchiveNumberingMode.Date;
-            fileTarget.ArchiveDateFormat = "yyyyMMdd";
-            fileTarget.MaxArchiveFiles = 30;
+            //fileTarget.ArchiveDateFormat = "yyyyMMdd";
+            fileTarget.MaxArchiveFiles = 7;
 
             LoggingRule rule1 = new LoggingRule("*", LogLevel.Trace, fileTarget);
             config.LoggingRules.Add(rule1);
