@@ -23,7 +23,7 @@ namespace PhotoScreensaverPlus.Logging
             fileTarget.ArchiveNumbering = ArchiveNumberingMode.Date;
             fileTarget.ArchiveDateFormat = "yyyyMMdd"; //BEZ POMLČEK!!! Musí to být takto, jakmile tam jsou pomlčky, nebo něco, tak to nemaže starší záznamy
             fileTarget.ArchiveFileName = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "/PhotoScreensaverPlus/logs/{#} - backup.log";
-            fileTarget.MaxArchiveFiles = 7;
+            fileTarget.MaxArchiveFiles = 30;
 
             LoggingRule rule1 = new LoggingRule("*", LogLevel.Trace, fileTarget);
             config.LoggingRules.Add(rule1);
