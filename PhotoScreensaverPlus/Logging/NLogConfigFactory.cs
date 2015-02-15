@@ -17,12 +17,12 @@ namespace PhotoScreensaverPlus.Logging
             FileTarget fileTarget = new FileTarget();
             config.AddTarget("file", fileTarget);
 
-            fileTarget.FileName = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "/PhotoScreensaverPlus/logs/${shortdate}.log";
+            fileTarget.FileName = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "/PhotoScreensaverPlus/logs/${date:format=yyyyMMdd}.log";
             fileTarget.Layout = @"${date:format=HH\:mm\:ss.fff} ${uppercase:${level}} ${callsite:className=false:fileName=true:includeSourcePath=false:methodName=true} ${message}";
-            fileTarget.ArchiveFileName = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "/PhotoScreensaverPlus/logs/{#}.txt";
             fileTarget.ArchiveEvery = FileArchivePeriod.Day;
             fileTarget.ArchiveNumbering = ArchiveNumberingMode.Date;
-            //fileTarget.ArchiveDateFormat = "yyyyMMdd";
+            fileTarget.ArchiveDateFormat = "yyyyMMdd"; //musí to být takto, jakmile tam jsou pomlčky, nebo něco, tak to nemaže starší záznamy
+            fileTarget.ArchiveFileName = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "/PhotoScreensaverPlus/logs/{#}.log";
             fileTarget.MaxArchiveFiles = 7;
 
             LoggingRule rule1 = new LoggingRule("*", LogLevel.Trace, fileTarget);
