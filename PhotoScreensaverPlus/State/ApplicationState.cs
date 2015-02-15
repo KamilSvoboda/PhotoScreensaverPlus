@@ -46,7 +46,6 @@ namespace PhotoScreensaverPlus.State
         private const string SAVE_PATH_TO_FILE_F4 = "save_path_to_file_f4";
         private const string SAVE_PATH_TO_FILE_F5 = "save_path_to_file_f5";
         private const string HISTORY = "history";
-        private const string DELETE_NOT_EXISTING_FOLDERS = "delete_not_existing_folders";
         private const bool DEFAULT_SHOW_FILE_NAME = false;
         private const bool DEFAULT_SHOW_DATE = false;
         private const bool DEFAULT_SHOW_EXIF = false;
@@ -70,7 +69,6 @@ namespace PhotoScreensaverPlus.State
         private const string DEFAULT_SAVE_PATH_TO_FILE_F4 = "toExhibition";
         private const string DEFAULT_SAVE_PATH_TO_FILE_F5 = "toArchive";
         private static Color DEFAULT_BACKGROUND_COLOR = Color.Black;
-        private const bool DEFAULT_DELETE_NOT_EXISTING_FOLDERS = true;
         public static int HISTORY_SIZE = 100;
         public static int LOADED_HISTORY_SIZE = 10;
         public static String EVENT_LOG_NAME = "Application";
@@ -123,10 +121,6 @@ namespace PhotoScreensaverPlus.State
         public bool Check4Updates { get; set; }
         public bool SmoothHidingEnabled { get; set; }
         public bool ExitOnlyWithEscape { get; set; }
-        /// <summary>
-        /// Delete not existing folder from configuration
-        /// </summary>
-        public bool DeleteNotExistingFolders { get; set; }
 
         /// <summary>
         /// Persistate current value of ShowFileName to registry
@@ -226,14 +220,6 @@ namespace PhotoScreensaverPlus.State
         }
 
         /// <summary>
-        /// Persist delete not existing folder
-        /// </summary>
-        public void SaveDeleteNotExistingFolders()
-        {
-            saveToRegistry(DELETE_NOT_EXISTING_FOLDERS, Convert.ToString(DeleteNotExistingFolders));
-        }
-
-        /// <summary>
         /// Interval between images
         /// </summary>
         public int Interval
@@ -278,9 +264,10 @@ namespace PhotoScreensaverPlus.State
         /// <summary>
         /// Kořenové adresáře, ve kterých se mají rekurzivně vyhledávat fotky
         /// </summary>
-        public List<string> ImagesRootFolders {
+        public List<string> ImagesRootFolders
+        {
             get
-            { 
+            {
                 if (_imageRootFolders == null)
                 {
                     _imageRootFolders = new List<string>();
@@ -294,15 +281,12 @@ namespace PhotoScreensaverPlus.State
                             {
                                 for (int i = 0; i < count; i++)
                                 {
-                                    string rootFolder = loadFromRegistry(IMAGES_ROOT_FOLDER + Convert.ToString(i + 1));
+                                    var rootFolder = loadFromRegistry(IMAGES_ROOT_FOLDER + Convert.ToString(i + 1));
 
-                                    if ((rootFolder == null || !Directory.Exists(rootFolder)) && DeleteNotExistingFolders)
+                                    if (rootFolder != null)
                                     {
-                                        logger.Error("Folder doesn't exists " + rootFolder + " - it will be deleted from configuration");
-                                        removeFromRegistry(IMAGES_ROOT_FOLDER + Convert.ToString(i + 1));                                                                                    
+                                        _imageRootFolders.Add(rootFolder);
                                     }
-                                    else
-                                        _imageRootFolders.Add(rootFolder);                                            
                                 }
                             }
                         }
@@ -323,20 +307,22 @@ namespace PhotoScreensaverPlus.State
             }
             set
             {
+                _imageRootFolders = value;
+                var count = 0;
                 if (value != null && value.Count > 0)
                 {
-                    _imageRootFolders = value;
                     for (int i = 0; i < _imageRootFolders.Count; i++)
                     {
                         saveToRegistry(IMAGES_ROOT_FOLDER + Convert.ToString(i + 1), _imageRootFolders[i]);
                     }
-                    saveToRegistry(IMAGES_ROOT_FOLDERS_COUNT, _imageRootFolders.Count);
+                    count = _imageRootFolders.Count;
                 }
                 //clear old values in the registry (next 100)
-                for (int i = _imageRootFolders.Count + 1; i < _imageRootFolders.Count + 100; i++)
+                for (int i = count + 1; i < count + 100; i++)
                 {
                     removeFromRegistry(IMAGES_ROOT_FOLDER + Convert.ToString(i));
                 }
+                saveToRegistry(IMAGES_ROOT_FOLDERS_COUNT, count);
             }
         }
 
@@ -351,11 +337,7 @@ namespace PhotoScreensaverPlus.State
 
                 if (null == file)
                     file = "";
-                else if (!File.Exists(file))
-                {
-                    logger.Error("File with image paths doesn't exists! " + file);
-                    removeFromRegistry(FILE_WITH_IMAGE_PATHS);
-                }
+
                 return file;
             }
             set
@@ -389,15 +371,10 @@ namespace PhotoScreensaverPlus.State
                             {
                                 for (int i = 0; i < count; i++)
                                 {
-                                    string folder = loadFromRegistry(DONT_SHOW_FOLDER + Convert.ToString(i + 1));
-                                    if (folder != null && Directory.Exists(folder))
+                                    var folder = loadFromRegistry(DONT_SHOW_FOLDER + Convert.ToString(i + 1));
+                                    if (folder != null)
                                     {
                                         _dontShowFolders.Add(folder);
-                                    }
-                                    else if (folder != null) //directory doesn't exists
-                                    {
-                                        logger.Error("Excluded folder doesn't exists " + folder);
-                                        removeFromRegistry(DONT_SHOW_FOLDER + Convert.ToString(i + 1));
                                     }
                                 }
                             }
@@ -413,20 +390,23 @@ namespace PhotoScreensaverPlus.State
             }
             set
             {
+                _dontShowFolders = value;
+                var count = 0;
                 if (value != null && value.Count > 0)
                 {
-                    _dontShowFolders = value;
                     for (int i = 0; i < _dontShowFolders.Count; i++)
                     {
                         saveToRegistry(DONT_SHOW_FOLDER + Convert.ToString(i + 1), _dontShowFolders[i]);
                     }
-                    saveToRegistry(DONT_SHOW_FOLDERS_COUNT, _dontShowFolders.Count);
+                    count = _dontShowFolders.Count;
                 }
+
                 //clear old values in the registry (next 100)
-                for (int i = _dontShowFolders.Count + 1; i < _dontShowFolders.Count + 100; i++)
+                for (int i = count + 1; i < count + 100; i++)
                 {
                     removeFromRegistry(DONT_SHOW_FOLDER + Convert.ToString(i));
                 }
+                saveToRegistry(DONT_SHOW_FOLDERS_COUNT, count);
             }
         }
 
@@ -453,13 +433,9 @@ namespace PhotoScreensaverPlus.State
                                 for (int i = 0; i < count; i++)
                                 {
                                     string folder = loadFromRegistry(DONT_SHOW_IMAGE + Convert.ToString(i + 1));
-                                    if (folder != null && File.Exists(folder))
+                                    if (folder != null)
                                     {
                                         _dontShowImages.Add(folder);
-                                    }
-                                    else if (folder != null) //directory doesn't exists
-                                    {
-                                        removeFromRegistry(DONT_SHOW_IMAGE + Convert.ToString(i + 1));
                                     }
                                 }
                             }
@@ -475,21 +451,22 @@ namespace PhotoScreensaverPlus.State
             }
             set
             {
+                _dontShowImages = value;
+                var count = 0;
                 if (value != null && value.Count > 0)
                 {
-                    _dontShowImages = value;
                     for (int i = 0; i < _dontShowImages.Count; i++)
                     {
                         saveToRegistry(DONT_SHOW_IMAGE + Convert.ToString(i + 1), _dontShowImages[i]);
                     }
-                    saveToRegistry(DONT_SHOW_IMAGES_COUNT, _dontShowImages.Count);
-
-                    //clear old values in the registry if any (next 100)
-                    for (int i = _dontShowImages.Count + 1; i < _dontShowImages.Count + 100; i++)
-                    {
-                        removeFromRegistry(DONT_SHOW_IMAGE + Convert.ToString(i));
-                    }
+                    count = _dontShowImages.Count;
                 }
+                //clear old values in the registry if any (next 100)
+                for (int i = count + 1; i < count + 100; i++)
+                {
+                    removeFromRegistry(DONT_SHOW_IMAGE + Convert.ToString(i));
+                }
+                saveToRegistry(DONT_SHOW_IMAGES_COUNT, count);
             }
         }
 
@@ -1041,24 +1018,6 @@ namespace PhotoScreensaverPlus.State
                 {
                     ExitOnlyWithEscape = DEFAULT_EXIT_ONLY_WITH_ESCAPE;
                     saveToRegistry(EXIT_ONLY_WITH_ESCAPE, Convert.ToString(ExitOnlyWithEscape));
-                }
-
-            //initialize delete not existing folders
-            value = loadFromRegistry(DELETE_NOT_EXISTING_FOLDERS);
-            if (null == value)
-            {
-                DeleteNotExistingFolders = DEFAULT_DELETE_NOT_EXISTING_FOLDERS;
-                saveToRegistry(DELETE_NOT_EXISTING_FOLDERS, Convert.ToString(DeleteNotExistingFolders));
-            }
-            else
-                try
-                {
-                    DeleteNotExistingFolders = Convert.ToBoolean(value);
-                }
-                catch (Exception)
-                {
-                    DeleteNotExistingFolders = DEFAULT_DELETE_NOT_EXISTING_FOLDERS;
-                    saveToRegistry(DELETE_NOT_EXISTING_FOLDERS, Convert.ToString(DeleteNotExistingFolders));
                 }
         }
 

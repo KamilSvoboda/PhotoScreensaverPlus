@@ -92,7 +92,6 @@
             this.textBoxSavePathToFolder = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.checkBoxDeleteNotExistingFolders = new System.Windows.Forms.CheckBox();
             this.radioButtonStartInLastMode = new System.Windows.Forms.RadioButton();
             this.radioButtonStartInNormalModel = new System.Windows.Forms.RadioButton();
             this.radioButtonStartInGTF = new System.Windows.Forms.RadioButton();
@@ -353,7 +352,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBoxDeleteNotExistingFolders);
             this.groupBox1.Controls.Add(this.btnRemoveImagesFolder);
             this.groupBox1.Controls.Add(this.btnAddImagesFolder);
             this.groupBox1.Controls.Add(this.lstImageFolders);
@@ -392,7 +390,7 @@
             this.lstImageFolders.FormattingEnabled = true;
             this.lstImageFolders.Location = new System.Drawing.Point(6, 45);
             this.lstImageFolders.Name = "lstImageFolders";
-            this.lstImageFolders.Size = new System.Drawing.Size(465, 108);
+            this.lstImageFolders.Size = new System.Drawing.Size(465, 121);
             this.lstImageFolders.TabIndex = 3;
             this.lstImageFolders.SelectedValueChanged += new System.EventHandler(this.lstImageFolders_SelectedValueChanged);
             // 
@@ -786,18 +784,6 @@
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // checkBoxDeleteNotExistingFolders
-            // 
-            this.checkBoxDeleteNotExistingFolders.AutoSize = true;
-            this.checkBoxDeleteNotExistingFolders.Checked = true;
-            this.checkBoxDeleteNotExistingFolders.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxDeleteNotExistingFolders.Location = new System.Drawing.Point(6, 153);
-            this.checkBoxDeleteNotExistingFolders.Name = "checkBoxDeleteNotExistingFolders";
-            this.checkBoxDeleteNotExistingFolders.Size = new System.Drawing.Size(214, 17);
-            this.checkBoxDeleteNotExistingFolders.TabIndex = 24;
-            this.checkBoxDeleteNotExistingFolders.Text = "Automaticaly remove not existing folders";
-            this.checkBoxDeleteNotExistingFolders.UseVisualStyleBackColor = true;
-            // 
             // radioButtonStartInLastMode
             // 
             this.radioButtonStartInLastMode.AutoSize = true;
@@ -1083,7 +1069,6 @@
         private System.Windows.Forms.RadioButton radioButtonStartInLastMode;
         private System.Windows.Forms.RadioButton radioButtonStartInNormalModel;
         private System.Windows.Forms.RadioButton radioButtonStartInGTF;
-        private System.Windows.Forms.CheckBox checkBoxDeleteNotExistingFolders;
 
     }
 }
