@@ -62,6 +62,7 @@ namespace PhotoScreensaverPlus.Forms
             cbxFontSize.SelectedIndex = cbxFontSize.Items.IndexOf(Convert.ToString(state.FontSize));
             btnColor.BackColor = state.BackgroundColor;
             linkLabel1.Text = state.Url;
+            checkBoxDeleteNotExistingFolders.Checked = state.DeleteNotExistingFolders;
         }
 
         private void brnCancel_Click(object sender, EventArgs e)
@@ -147,6 +148,9 @@ namespace PhotoScreensaverPlus.Forms
                 state.SaveExitOnlyWithEscape();
                 state.SmoothHidingEnabled = checkBoxSmoothHide.Checked;
                 state.SaveSmoothHideOfImage();
+                state.DeleteNotExistingFolders = checkBoxDeleteNotExistingFolders.Checked;
+                state.SaveDeleteNotExistingFolders();
+
                 state.FontSize = Convert.ToInt32(((string)cbxFontSize.SelectedItem));
                 state.BackgroundColor = btnColor.BackColor;
 

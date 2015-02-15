@@ -15,60 +15,62 @@ namespace PhotoScreensaverPlus.State
         private static Logger logger = LogManager.GetCurrentClassLogger();
         #region Definitions
         private static string REGISTRY_KEY = "SOFTWARE\\Kamil Svoboda\\" + Application.ProductName;
-        private static string INTERVAL = "interval";
-        private static string IMAGES_ROOT_FOLDERS_COUNT = "image_folders_count";
-        private static string IMAGES_ROOT_FOLDER = "image_folder";
-        private static string FILE_WITH_IMAGE_PATHS = "file_with_image_paths";
-        private static string DONT_SHOW_FOLDER = "dont_show_folder";
-        private static string DONT_SHOW_FOLDERS_COUNT = "dont_show_folders_count";
-        private static string DONT_SHOW_IMAGE = "dont_show_image";
-        private static string DONT_SHOW_IMAGES_COUNT = "dont_show_images_count";
-        private static string COPY_TO_FOLDER = "copy_to_folder";
-        private static string BACKGROUND_COLOR = "background_color";
-        private static string SHOW_FILE_NAME = "show_file_name";
-        private static string SHOW_DATE = "show_date";
-        private static string SHOW_EXIF = "show_exif";
-        private static string SHOW_TEXT_BACKGROUND = "show_text_background";
-        private static string SHOW_TIME = "show_time";
-        private static string ROTATE_BY_EXIF = "rotate_by_exif";
-        private static string FONT_SIZE = "font_size";
-        private static string RUN_IN_MODE = "run_in_mode"; //mod, ve kterém se má spořič spustit 0 = stejně jako posledně (last_mode), 1 = normal, 2 = GTF
-        private static string LAST_MODE = "last_mode";
-        private static string GTF_RANDOM_NEXT_FOLDER = "gtf_random";
-        private static string INTERPOLATION = "interpolation";
-        private static string CHECK4UPDATES = "check4updates";
-        private static string SMOOTH_HIDE_OF_IMAGE = "smooth_hide_of_image";
-        private static string EXIT_ONLY_WITH_ESCAPE = "exit_only_with_esc";
-        private static string SAVE_PATH_TO_FOLDER = "save_path_to_folder";
-        private static string SAVE_PATH_TO_FILE_F1 = "save_path_to_file_f1";
-        private static string SAVE_PATH_TO_FILE_F2 = "save_path_to_file_f2";
-        private static string SAVE_PATH_TO_FILE_F3 = "save_path_to_file_f3";
-        private static string SAVE_PATH_TO_FILE_F4 = "save_path_to_file_f4";
-        private static string SAVE_PATH_TO_FILE_F5 = "save_path_to_file_f5";
-        private static string HISTORY = "history";
-        private static bool DEFAULT_SHOW_FILE_NAME = false;
-        private static bool DEFAULT_SHOW_DATE = false;
-        private static bool DEFAULT_SHOW_EXIF = false;
-        private static bool DEFAULT_SHOW_TEXT_BACKGROUND = true;
-        private static bool DEFAULT_SHOW_TIME = false;
-        private static bool DEFAULT_ROTATE_BY_EXIF = true;
-        private static int DEFAULT_INTERVAL = 5;
-        private static int MINIMAL_INTERVAL = 2;
-        private static int DEFAULT_FONT_SIZE = 10;
-        private static int DEFAULT_RUN_IN_MODE = 0; //defaultně spuštíme tak, jaký byl mod v posledním spuštění
-        private static int DEFAULT_LAST_MODE = 1; //defaultní hodnota posledního spuštění je náhodně
-        private static bool DEFAULT_GTF_RANDOM_NEXT_FOLDER = true;
-        private static bool DEFAULT_INTERPOLATION = false;
-        private static bool DEFAULT_CHECK4UPDATES = true;
-        private static bool DEFAULT_EXIT_ONLY_WITH_ESCAPE = false;
-        private static bool DEFAULT_SMOOTH_HIDE_OF_IMAGE = true;
-        public static string SAVE_PATH_FILES_EXTENSION = ".txt";
-        private static string DEFAULT_SAVE_PATH_TO_FILE_F1 = "toProcess";
-        private static string DEFAULT_SAVE_PATH_TO_FILE_F2 = "toPrint";
-        private static string DEFAULT_SAVE_PATH_TO_FILE_F3 = "toWeb";
-        private static string DEFAULT_SAVE_PATH_TO_FILE_F4 = "toExhibition";
-        private static string DEFAULT_SAVE_PATH_TO_FILE_F5 = "toArchive";
+        private const string INTERVAL = "interval";
+        private const string IMAGES_ROOT_FOLDERS_COUNT = "image_folders_count";
+        private const string IMAGES_ROOT_FOLDER = "image_folder";
+        private const string FILE_WITH_IMAGE_PATHS = "file_with_image_paths";
+        private const string DONT_SHOW_FOLDER = "dont_show_folder";
+        private const string DONT_SHOW_FOLDERS_COUNT = "dont_show_folders_count";
+        private const string DONT_SHOW_IMAGE = "dont_show_image";
+        private const string DONT_SHOW_IMAGES_COUNT = "dont_show_images_count";
+        private const string COPY_TO_FOLDER = "copy_to_folder";
+        private const string BACKGROUND_COLOR = "background_color";
+        private const string SHOW_FILE_NAME = "show_file_name";
+        private const string SHOW_DATE = "show_date";
+        private const string SHOW_EXIF = "show_exif";
+        private const string SHOW_TEXT_BACKGROUND = "show_text_background";
+        private const string SHOW_TIME = "show_time";
+        private const string ROTATE_BY_EXIF = "rotate_by_exif";
+        private const string FONT_SIZE = "font_size";
+        private const string RUN_IN_MODE = "run_in_mode"; //mod, ve kterém se má spořič spustit 0 = stejně jako posledně (last_mode), 1 = normal, 2 = GTF
+        private const string LAST_MODE = "last_mode";
+        private const string GTF_RANDOM_NEXT_FOLDER = "gtf_random";
+        private const string INTERPOLATION = "interpolation";
+        private const string CHECK4UPDATES = "check4updates";
+        private const string SMOOTH_HIDE_OF_IMAGE = "smooth_hide_of_image";
+        private const string EXIT_ONLY_WITH_ESCAPE = "exit_only_with_esc";
+        private const string SAVE_PATH_TO_FOLDER = "save_path_to_folder";
+        private const string SAVE_PATH_TO_FILE_F1 = "save_path_to_file_f1";
+        private const string SAVE_PATH_TO_FILE_F2 = "save_path_to_file_f2";
+        private const string SAVE_PATH_TO_FILE_F3 = "save_path_to_file_f3";
+        private const string SAVE_PATH_TO_FILE_F4 = "save_path_to_file_f4";
+        private const string SAVE_PATH_TO_FILE_F5 = "save_path_to_file_f5";
+        private const string HISTORY = "history";
+        private const string DELETE_NOT_EXISTING_FOLDERS = "delete_not_existing_folders";
+        private const bool DEFAULT_SHOW_FILE_NAME = false;
+        private const bool DEFAULT_SHOW_DATE = false;
+        private const bool DEFAULT_SHOW_EXIF = false;
+        private const bool DEFAULT_SHOW_TEXT_BACKGROUND = true;
+        private const bool DEFAULT_SHOW_TIME = false;
+        private const bool DEFAULT_ROTATE_BY_EXIF = true;
+        private const int DEFAULT_INTERVAL = 5;
+        private const int MINIMAL_INTERVAL = 2;
+        private const int DEFAULT_FONT_SIZE = 10;
+        private const int DEFAULT_RUN_IN_MODE = 0; //defaultně spuštíme tak, jaký byl mod v posledním spuštění
+        private const int DEFAULT_LAST_MODE = 1; //defaultní hodnota posledního spuštění je náhodně
+        private const bool DEFAULT_GTF_RANDOM_NEXT_FOLDER = true;
+        private const bool DEFAULT_INTERPOLATION = false;
+        private const bool DEFAULT_CHECK4UPDATES = true;
+        private const bool DEFAULT_EXIT_ONLY_WITH_ESCAPE = false;
+        private const bool DEFAULT_SMOOTH_HIDE_OF_IMAGE = true;
+        public const string SAVE_PATH_FILES_EXTENSION = ".txt";
+        private const string DEFAULT_SAVE_PATH_TO_FILE_F1 = "toProcess";
+        private const string DEFAULT_SAVE_PATH_TO_FILE_F2 = "toPrint";
+        private const string DEFAULT_SAVE_PATH_TO_FILE_F3 = "toWeb";
+        private const string DEFAULT_SAVE_PATH_TO_FILE_F4 = "toExhibition";
+        private const string DEFAULT_SAVE_PATH_TO_FILE_F5 = "toArchive";
         private static Color DEFAULT_BACKGROUND_COLOR = Color.Black;
+        private const bool DEFAULT_DELETE_NOT_EXISTING_FOLDERS = true;
         public static int HISTORY_SIZE = 100;
         public static int LOADED_HISTORY_SIZE = 10;
         public static String EVENT_LOG_NAME = "Application";
@@ -121,6 +123,10 @@ namespace PhotoScreensaverPlus.State
         public bool Check4Updates { get; set; }
         public bool SmoothHidingEnabled { get; set; }
         public bool ExitOnlyWithEscape { get; set; }
+        /// <summary>
+        /// Delete not existing folder from configuration
+        /// </summary>
+        public bool DeleteNotExistingFolders { get; set; }
 
         /// <summary>
         /// Persistate current value of ShowFileName to registry
@@ -220,6 +226,14 @@ namespace PhotoScreensaverPlus.State
         }
 
         /// <summary>
+        /// Persist delete not existing folder
+        /// </summary>
+        public void SaveDeleteNotExistingFolders()
+        {
+            saveToRegistry(DELETE_NOT_EXISTING_FOLDERS, Convert.ToString(DeleteNotExistingFolders));
+        }
+
+        /// <summary>
         /// Interval between images
         /// </summary>
         public int Interval
@@ -281,15 +295,14 @@ namespace PhotoScreensaverPlus.State
                                 for (int i = 0; i < count; i++)
                                 {
                                     string rootFolder = loadFromRegistry(IMAGES_ROOT_FOLDER + Convert.ToString(i + 1));
-                                    if (rootFolder != null && Directory.Exists(rootFolder))
+
+                                    if ((rootFolder == null || !Directory.Exists(rootFolder)) && DeleteNotExistingFolders)
                                     {
-                                        _imageRootFolders.Add(rootFolder);
+                                        logger.Error("Folder doesn't exists " + rootFolder + " - it will be deleted from configuration");
+                                        removeFromRegistry(IMAGES_ROOT_FOLDER + Convert.ToString(i + 1));                                                                                    
                                     }
-                                    else if (rootFolder != null) //directory doesn't exists
-                                    {
-                                        logger.Error("Folder from settings doesn't exists " + rootFolder);
-                                        removeFromRegistry(IMAGES_ROOT_FOLDER + Convert.ToString(i + 1));
-                                    }
+                                    else
+                                        _imageRootFolders.Add(rootFolder);                                            
                                 }
                             }
                         }
@@ -1028,6 +1041,24 @@ namespace PhotoScreensaverPlus.State
                 {
                     ExitOnlyWithEscape = DEFAULT_EXIT_ONLY_WITH_ESCAPE;
                     saveToRegistry(EXIT_ONLY_WITH_ESCAPE, Convert.ToString(ExitOnlyWithEscape));
+                }
+
+            //initialize delete not existing folders
+            value = loadFromRegistry(DELETE_NOT_EXISTING_FOLDERS);
+            if (null == value)
+            {
+                DeleteNotExistingFolders = DEFAULT_DELETE_NOT_EXISTING_FOLDERS;
+                saveToRegistry(DELETE_NOT_EXISTING_FOLDERS, Convert.ToString(DeleteNotExistingFolders));
+            }
+            else
+                try
+                {
+                    DeleteNotExistingFolders = Convert.ToBoolean(value);
+                }
+                catch (Exception)
+                {
+                    DeleteNotExistingFolders = DEFAULT_DELETE_NOT_EXISTING_FOLDERS;
+                    saveToRegistry(DELETE_NOT_EXISTING_FOLDERS, Convert.ToString(DeleteNotExistingFolders));
                 }
         }
 
