@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kamil Svoboda")]
 [assembly: AssemblyProduct("Photo Screensaver Plus")]
-[assembly: AssemblyCopyright("Copyright ©  2008-2015")]
+[assembly: AssemblyCopyright("Copyright ©  2008-2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
