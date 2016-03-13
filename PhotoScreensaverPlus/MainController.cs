@@ -745,7 +745,7 @@ namespace PhotoScreensaverPlus
             text = text + "Alt + F - swith on/off \"go through folder\" mode (start with current image)\n\r";
             text = text + "Ctrl + F - restart current folder presentation in GTF mode\n\r";
             text = text + "Left / Right arrow keys - go to previous / next image\n\r";
-            text = text + "Up / Down arrow keys - speed up /down presentation\n\r";
+            text = text + "Up / Down arrow keys - speed up /down current presentation\n\r";
             text = text + "X - exclude current image (will not be shown next time)\n\r";
             text = text + "Alt + X - exclude whole current image folder (will not be shown next time)\n\r";
             text = text + "Delete - delete current image\n\r";
@@ -885,15 +885,18 @@ namespace PhotoScreensaverPlus
         public void SpeedUp()
         {
             logger.Debug("Speed up (1sec)");
-            AppState.Interval--;
-            timer.Interval = AppState.Interval * 1000;
+            //AppState.Interval--;
+            //timer.Interval = AppState.Interval * 1000;
+            if (timer.Interval > 1000)
+                timer.Interval -= 1000;
         }
 
         public void SpeedDown()
         {
             logger.Debug("Speed down (1sec)");
-            AppState.Interval++;
-            timer.Interval = AppState.Interval * 1000;
+            //AppState.Interval++;
+            //timer.Interval = AppState.Interval * 1000;
+                timer.Interval += 1000;
         }
 
         public void SaveFileName(String toFile)

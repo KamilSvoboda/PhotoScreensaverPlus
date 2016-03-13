@@ -166,11 +166,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(377, 162);
+            this.label2.Location = new System.Drawing.Point(359, 162);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.Size = new System.Drawing.Size(75, 13);
             this.label2.TabIndex = 18;
-            this.label2.Text = "Interval:";
+            this.label2.Text = "Display image:";
             // 
             // linkLabel1
             // 
@@ -922,7 +922,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(197, 17);
             this.label9.TabIndex = 15;
-            this.label9.Text = "© Kamil Svoboda 2008 - 2015";
+            this.label9.Text = "© Kamil Svoboda 2008 - 2016";
             // 
             // lblVersion
             // 
