@@ -1,4 +1,8 @@
-﻿1.8
+﻿1.9.
+- Nemažou z nastavení adresáře, které nebyly nalezeny (kvůli fotkám na dočasně odpojených discích)
+- Logování pomocí NLog
+- Zrychlení / zpomalení prezentace pomocí šipek se neukládá do nastavení - funguje pouze pro aktuální prezentaci
+1.8
 - Lepší náhodnost adresářů a fotek (třída Random se neinstancuje s každým novým požadavkem na náhodné číslo)
 - Ošetření chyby při vykreslování EXIF (nevykreslovaly se všechny informace, protože to přestalo vykreslovat po chybě čtení jedné z nich)
 - Nové logování pomocí NLog (do adreáře AppData/Local/PhotoScreensaverPlus/logs/)

@@ -1,6 +1,5 @@
 ﻿- Klávesa O otevře Průzkumníka v adresáři aktuální fotky
 - Při pauze zobrazit symbol pauzy přes obrázek
-- Podívat se na tu dobu promítání, vypadá to, že při přepínání GTF se produlžuje
 - zobrazení pořadí fotky v adresáři i mimo GTF
 - nápovědu jako bitmapu
 
