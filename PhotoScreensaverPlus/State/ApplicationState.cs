@@ -52,7 +52,7 @@ namespace PhotoScreensaverPlus.State
         private const bool DEFAULT_SHOW_TEXT_BACKGROUND = true;
         private const bool DEFAULT_SHOW_TIME = false;
         private const bool DEFAULT_ROTATE_BY_EXIF = true;
-        private const int DEFAULT_INTERVAL = 5;
+        private const int DEFAULT_INTERVAL = 6;
         private const int MINIMAL_INTERVAL = 2;
         private const int DEFAULT_FONT_SIZE = 10;
         private const int DEFAULT_RUN_IN_MODE = 0; //defaultně spuštíme tak, jaký byl mod v posledním spuštění
@@ -226,15 +226,23 @@ namespace PhotoScreensaverPlus.State
         {
             get
             {
-                string value = loadFromRegistry(INTERVAL);
                 int result = DEFAULT_INTERVAL;
-                try
-                {
-                    result = Convert.ToInt32(value);
+                string value = loadFromRegistry(INTERVAL);
+                if (null != value)
+                {                    
+                    try
+                    {
+                        result = Convert.ToInt32(value);
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Fatal("Can't convert interval " + value + " to number", e);
+                        result = DEFAULT_INTERVAL;
+                        saveToRegistry(INTERVAL, result);
+                    }
                 }
-                catch (Exception e)
+                else
                 {
-                    logger.Fatal("Can't convert interval " + value + " to number", e);
                     result = DEFAULT_INTERVAL;
                     saveToRegistry(INTERVAL, result);
                 }
@@ -1107,7 +1115,7 @@ namespace PhotoScreensaverPlus.State
         {
             RegistryKey key = Registry.CurrentUser.OpenSubKey(REGISTRY_KEY);
             string result = null;
-            ; if (key != null)
+            if (key != null)
             {
                 result = (string)key.GetValue(name);
                 key.Close();
