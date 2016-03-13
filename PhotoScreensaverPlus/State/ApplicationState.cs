@@ -229,7 +229,7 @@ namespace PhotoScreensaverPlus.State
                 int result = DEFAULT_INTERVAL;
                 string value = loadFromRegistry(INTERVAL);
                 if (null != value)
-                {                    
+                {
                     try
                     {
                         result = Convert.ToInt32(value);
@@ -748,14 +748,21 @@ namespace PhotoScreensaverPlus.State
                 if (_fontSize == null)
                 {
                     string value = loadFromRegistry(FONT_SIZE);
-
-                    try
+                    if (null != value)
                     {
-                        _fontSize = Convert.ToInt32(value);
+                        try
+                        {
+                            _fontSize = Convert.ToInt32(value);
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Fatal("Can't load font size - default font size will be used and saved", e);
+                            _fontSize = DEFAULT_FONT_SIZE;
+                            saveToRegistry(FONT_SIZE, (int)_fontSize);
+                        }
                     }
-                    catch (Exception e)
+                    else
                     {
-                        logger.Fatal("Can't load font size - default font size will be used and saved", e);
                         _fontSize = DEFAULT_FONT_SIZE;
                         saveToRegistry(FONT_SIZE, (int)_fontSize);
                     }
