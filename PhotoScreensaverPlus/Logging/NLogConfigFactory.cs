@@ -12,9 +12,9 @@ namespace PhotoScreensaverPlus.Logging
     {
         public static void BuildConfig()
         {
-            LoggingConfiguration config = new LoggingConfiguration();
+            var config = new LoggingConfiguration();
 
-            FileTarget fileTarget = new FileTarget();
+            var fileTarget = new FileTarget();
             config.AddTarget("file", fileTarget);
 
             fileTarget.FileName = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "/PhotoScreensaverPlus/logs/${date:format=yyyyMMdd}.log";
@@ -22,7 +22,7 @@ namespace PhotoScreensaverPlus.Logging
             fileTarget.ArchiveEvery = FileArchivePeriod.Day;
             fileTarget.ArchiveNumbering = ArchiveNumberingMode.Date;
             fileTarget.ArchiveDateFormat = "yyyyMMdd"; //BEZ POMLČEK!!! Musí to být takto, jakmile tam jsou pomlčky, nebo něco, tak to nemaže starší záznamy
-            fileTarget.ArchiveFileName = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "/PhotoScreensaverPlus/logs/{#} - backup.log";
+            fileTarget.ArchiveFileName = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "/PhotoScreensaverPlus/logs/{#}.log";
             fileTarget.MaxArchiveFiles = 30;
 
             LoggingRule rule1 = new LoggingRule("*", LogLevel.Trace, fileTarget);
