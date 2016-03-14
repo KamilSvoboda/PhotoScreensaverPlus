@@ -26,7 +26,7 @@ namespace PhotoScreensaverPlus
         [STAThread]
         static void Main(string[] args)
         {
-            applock = new Mutex(false, "htt://pssp.svoboda.biz");
+            applock = new Mutex(false, "http://pssp.svoboda.biz");
 
             NLogConfigFactory.BuildConfig();
 
