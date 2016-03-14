@@ -25,10 +25,10 @@ namespace PhotoScreensaverPlus
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private ApplicationState _appState;
-        public ApplicationState AppState { get { return _appState; }}
+        public ApplicationState AppState { get { return _appState; } }
 
         private BitmapGenerator _btmGen;
-        public BitmapGenerator BtmGen {get { return _btmGen; }}
+        public BitmapGenerator BtmGen { get { return _btmGen; } }
 
         private Drawer drawer;
         private DirectoryHelper dirHelper;
@@ -896,7 +896,7 @@ namespace PhotoScreensaverPlus
             logger.Debug("Speed down (1sec)");
             //AppState.Interval++;
             //timer.Interval = AppState.Interval * 1000;
-                timer.Interval += 1000;
+            timer.Interval += 1000;
         }
 
         public void SaveFileName(String toFile)
@@ -1066,22 +1066,25 @@ namespace PhotoScreensaverPlus
         /// </summary>
         public void ApplicationExit()
         {
-            if (AppState.shownFileInfoList.Count > 0) //save to history last 10 images
+            if (!AppState.IsFolderSlideShowMode)
             {
-                List<FileInfo> toHistory = new List<FileInfo>();
-                int i = 1;
-                for (int j = AppState.shownFileInfoList.Count; j > 0; j--)
+                if (AppState.shownFileInfoList.Count > 0) //save to history last 10 images
                 {
-                    if (i <= ApplicationState.LOADED_HISTORY_SIZE)
+                    List<FileInfo> toHistory = new List<FileInfo>();
+                    int i = 1;
+                    for (int j = AppState.shownFileInfoList.Count; j > 0; j--)
                     {
-                        toHistory.Add(AppState.shownFileInfoList[j - 1]);
-                        i++;
+                        if (i <= ApplicationState.LOADED_HISTORY_SIZE)
+                        {
+                            toHistory.Add(AppState.shownFileInfoList[j - 1]);
+                            i++;
+                        }
                     }
+                    AppState.saveHistory(toHistory);
                 }
-                AppState.saveHistory(toHistory);
-            }
 
-            AppState.saveCurrentMode();
+                AppState.saveCurrentMode();
+            }
 
             foreach (ScreenDefinition sd in drawer.ScreenDefinitions)
             {
