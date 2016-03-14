@@ -429,7 +429,13 @@ namespace PhotoScreensaverPlus
                     //if any image wasn't presented
                     if (AppState.shownFileInfoList.Count == 0)
                     {
-                        drawer.DrawImageToAllForms(BtmGen.GenerateErrorBitmap("sorry, there is no image of the type " + AppState.ImagesPatterns + " in the selected folder!"));
+                        string text = "sorry, there is no file of the type ";
+                        foreach (var item in AppState.ImagesPatterns)
+                        {
+                            text += item.ToString() + ", ";
+                        }
+                        text += " in the selected folder!";
+                        drawer.DrawImageToAllForms(BtmGen.GenerateErrorBitmap(text));
                         Thread.Sleep(4000);
                     }
                     ApplicationExit();
