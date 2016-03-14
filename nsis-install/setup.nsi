@@ -102,8 +102,8 @@ FunctionEnd
  LangString sec3Desc ${LANG_CZECH} "Vytvoøí pro všechny uživatele poèítaèe odkaz na ploše pro spuštìní spoøièe"
  LangString sec4Desc ${LANG_ENGLISH} "Adds a context menu command in the directory that starts a slideshow of pictures within the directory"
  LangString sec4Desc ${LANG_CZECH} "Pøidá pøíkaz do kontextové nabídky adresáøe, který spustí prezentaci obrázkù uvnitø adresáøe"
- LangString folderCommand ${LANG_ENGLISH} "Slide show with Photo Screensaver Plus"
- LangString folderCommand ${LANG_CZECH} "Prezentace obrázkù s Photo Screensaver Plus"
+ LangString folderCommand ${LANG_ENGLISH} "Photo Screensaver Plus slideshow"
+ LangString folderCommand ${LANG_CZECH} "Photo Screensaver Plus - prezentace"
  LangString shortcutDesc1 ${LANG_ENGLISH} "Uninstall screensaver"
  LangString shortcutDesc1 ${LANG_CZECH} "Odinstaluje spoøiè"
  LangString shortcutDesc2 ${LANG_ENGLISH} "Run screensaver"
@@ -215,7 +215,8 @@ Section $(sec4Title) FolderContextMenuCommand
   ;adds command to the directory context menu (mouse right click)
   SetShellVarContext All
   WriteRegStr HKCR "Directory\shell\PhotoScreensaverPlus" "" $(folderCommand)
-  WriteRegStr HKCR "Directory\shell\PhotoScreensaverPlus\command" "" '"$SYSDIR\PhotoScreensaverPlus.scr" /f "%1"'
+  #WriteRegStr HKCR "Directory\shell\PhotoScreensaverPlus\command" "" '"$SYSDIR\PhotoScreensaverPlus.scr" /f "%1"'
+  WriteRegStr HKCR "Directory\shell\PhotoScreensaverPlus\command" "" "$SYSDIR\PhotoScreensaverPlus.scr /f %1"
 SectionEnd
 
 Section -LogSourceInstaller ;zavolá vytvoøení log source v registrech windows
