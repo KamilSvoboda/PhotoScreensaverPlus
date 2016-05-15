@@ -5,6 +5,7 @@ using PhotoScreensaverPlus.State;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -115,7 +116,11 @@ namespace PhotoScreensaverPlus.FilesAndFolders
                 {
                     images = dir.GetFiles(pattern);
                     foreach (FileInfo image in images)
-                        list.Add(image);
+                    {
+                        Image img = Image.FromFile(image.FullName);
+                        if (img.Height >= state.MinDimension & img.Width >= state.MinDimension)
+                            list.Add(image);
+                    }
                 }
 
             }

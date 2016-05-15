@@ -92,6 +92,9 @@
             this.textBoxSavePathToFolder = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.radioButtonStartInLastMode = new System.Windows.Forms.RadioButton();
             this.radioButtonStartInNormalModel = new System.Windows.Forms.RadioButton();
             this.radioButtonStartInGTF = new System.Windows.Forms.RadioButton();
@@ -118,6 +121,7 @@
             this.groupBox3.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -166,10 +170,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(359, 162);
+            this.label2.Location = new System.Drawing.Point(398, 162);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 13);
-            this.label2.TabIndex = 18;
+            this.label2.TabIndex = 23;
             this.label2.Text = "Display image:";
             // 
             // linkLabel1
@@ -186,7 +190,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(440, 160);
+            this.numericUpDown1.Location = new System.Drawing.Point(474, 159);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             60,
             0,
@@ -199,7 +203,7 @@
             0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(42, 20);
-            this.numericUpDown1.TabIndex = 19;
+            this.numericUpDown1.TabIndex = 24;
             this.numericUpDown1.Value = new decimal(new int[] {
             5,
             0,
@@ -209,28 +213,28 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(488, 162);
+            this.label3.Location = new System.Drawing.Point(519, 163);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(27, 13);
-            this.label3.TabIndex = 20;
+            this.label3.TabIndex = 25;
             this.label3.Text = "sec.";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(187, 162);
+            this.label4.Location = new System.Drawing.Point(120, 162);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 13);
-            this.label4.TabIndex = 16;
+            this.label4.TabIndex = 17;
             this.label4.Text = "Background:";
             // 
             // btnColor
             // 
             this.btnColor.BackColor = System.Drawing.Color.Black;
-            this.btnColor.Location = new System.Drawing.Point(261, 156);
+            this.btnColor.Location = new System.Drawing.Point(191, 157);
             this.btnColor.Name = "btnColor";
             this.btnColor.Size = new System.Drawing.Size(25, 25);
-            this.btnColor.TabIndex = 17;
+            this.btnColor.TabIndex = 18;
             this.btnColor.UseVisualStyleBackColor = false;
             this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
             // 
@@ -240,7 +244,7 @@
             this.label5.Location = new System.Drawing.Point(14, 202);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 13);
-            this.label5.TabIndex = 21;
+            this.label5.TabIndex = 26;
             this.label5.Text = "Copy to folder:";
             // 
             // textBoxCopyToFolder
@@ -248,14 +252,14 @@
             this.textBoxCopyToFolder.Location = new System.Drawing.Point(89, 199);
             this.textBoxCopyToFolder.Name = "textBoxCopyToFolder";
             this.textBoxCopyToFolder.Size = new System.Drawing.Size(376, 20);
-            this.textBoxCopyToFolder.TabIndex = 22;
+            this.textBoxCopyToFolder.TabIndex = 0;
             // 
             // btnSelectFolder2
             // 
-            this.btnSelectFolder2.Location = new System.Drawing.Point(471, 196);
+            this.btnSelectFolder2.Location = new System.Drawing.Point(471, 197);
             this.btnSelectFolder2.Name = "btnSelectFolder2";
             this.btnSelectFolder2.Size = new System.Drawing.Size(75, 23);
-            this.btnSelectFolder2.TabIndex = 23;
+            this.btnSelectFolder2.TabIndex = 1;
             this.btnSelectFolder2.Text = "Select";
             this.btnSelectFolder2.UseVisualStyleBackColor = true;
             this.btnSelectFolder2.Click += new System.EventHandler(this.btnSelectFolder2_Click);
@@ -319,7 +323,7 @@
             "22",
             "24",
             "26"});
-            this.cbxFontSize.Location = new System.Drawing.Point(90, 159);
+            this.cbxFontSize.Location = new System.Drawing.Point(69, 158);
             this.cbxFontSize.MaxLength = 2;
             this.cbxFontSize.Name = "cbxFontSize";
             this.cbxFontSize.Size = new System.Drawing.Size(42, 21);
@@ -752,6 +756,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.numericUpDown2);
+            this.tabPage2.Controls.Add(this.label21);
+            this.tabPage2.Controls.Add(this.label20);
             this.tabPage2.Controls.Add(this.radioButtonStartInLastMode);
             this.tabPage2.Controls.Add(this.radioButtonStartInNormalModel);
             this.tabPage2.Controls.Add(this.radioButtonStartInGTF);
@@ -783,6 +790,41 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(317, 159);
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(52, 20);
+            this.numericUpDown2.TabIndex = 27;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(372, 162);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(18, 13);
+            this.label21.TabIndex = 22;
+            this.label21.Text = "px";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(235, 162);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(80, 13);
+            this.label20.TabIndex = 20;
+            this.label20.Text = "Min. dimension:";
             // 
             // radioButtonStartInLastMode
             // 
@@ -982,6 +1024,7 @@
             this.tabPage3.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
@@ -1069,6 +1112,8 @@
         private System.Windows.Forms.RadioButton radioButtonStartInLastMode;
         private System.Windows.Forms.RadioButton radioButtonStartInNormalModel;
         private System.Windows.Forms.RadioButton radioButtonStartInGTF;
-
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
     }
 }

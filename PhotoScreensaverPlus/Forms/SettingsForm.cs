@@ -34,6 +34,7 @@ namespace PhotoScreensaverPlus.Forms
             textBoxFile4.Text = state.SavePathToFileF4;
             textBoxFile5.Text = state.SavePathToFileF5;
             numericUpDown1.Value = state.Interval;
+            numericUpDown2.Value = state.MinDimension;
             checkBoxShowFileName.Checked = state.ShowFileName;
             checkBoxShowDate.Checked = state.ShowDate;
             checkBoxShowTime.Checked = state.ShowTime;
@@ -123,6 +124,7 @@ namespace PhotoScreensaverPlus.Forms
 
                 state.CopyToFolder = textBoxCopyToFolder.Text;
                 state.Interval = (int)numericUpDown1.Value;
+                state.MinDimension = (int) numericUpDown2.Value;
                 state.ShowFileName = checkBoxShowFileName.Checked;
                 state.SaveShowFileName();
                 state.ShowDate = checkBoxShowDate.Checked;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Windows.Forms;
 using System.IO;
 using Microsoft.Win32;
@@ -16,6 +17,7 @@ namespace PhotoScreensaverPlus.State
         #region Definitions
         private static string REGISTRY_KEY = "SOFTWARE\\Kamil Svoboda\\" + Application.ProductName;
         private const string INTERVAL = "interval";
+        private const string MIN_DIMENSION = "min_dimension";
         private const string IMAGES_ROOT_FOLDERS_COUNT = "image_folders_count";
         private const string IMAGES_ROOT_FOLDER = "image_folder";
         private const string FILE_WITH_IMAGE_PATHS = "file_with_image_paths";
@@ -54,6 +56,7 @@ namespace PhotoScreensaverPlus.State
         private const bool DEFAULT_ROTATE_BY_EXIF = true;
         private const int DEFAULT_INTERVAL = 6;
         private const int MINIMAL_INTERVAL = 2;
+        private const int DEFAULT_MIN_DIMENSION = 150;
         private const int DEFAULT_FONT_SIZE = 10;
         private const int DEFAULT_RUN_IN_MODE = 0; //defaultně spuštíme tak, jaký byl mod v posledním spuštění
         private const int DEFAULT_LAST_MODE = 1; //defaultní hodnota posledního spuštění je náhodně
@@ -265,6 +268,45 @@ namespace PhotoScreensaverPlus.State
 
                 }
                 saveToRegistry(INTERVAL, value);
+            }
+        }
+
+        private int? _minDimension;
+        /// <summary>
+        /// Minimal image dimension
+        /// </summary>
+        public int MinDimension
+        {
+            get
+            {
+                if (_minDimension == null)
+                {
+                    string value = loadFromRegistry(MIN_DIMENSION);
+                    if (null != value)
+                    {
+                        try
+                        {
+                            _minDimension = Convert.ToInt32(value);
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Fatal("Can't convert min. dimension " + value + " to number", e);
+                            _minDimension = DEFAULT_MIN_DIMENSION;
+                            saveToRegistry(MIN_DIMENSION, (int)_minDimension);
+                        }
+                    }
+                    else
+                    {
+                        _minDimension = DEFAULT_MIN_DIMENSION;
+                        saveToRegistry(MIN_DIMENSION, (int)_minDimension);
+                    }
+                }
+                return (int)_minDimension;
+            }
+            set
+            {
+                _minDimension = value;
+                saveToRegistry(MIN_DIMENSION, (int)_minDimension);
             }
         }
 

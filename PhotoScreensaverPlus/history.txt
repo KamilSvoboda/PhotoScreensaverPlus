@@ -1,7 +1,9 @@
-﻿1.9.
+﻿1.10
+- Nastavení minimální velikosti obrázku
+1.9.
 - Nemažou z nastavení adresáře, které nebyly nalezeny (kvůli fotkám na dočasně odpojených discích)
-- Logování pomocí NLog
 - Zrychlení / zpomalení prezentace pomocí šipek se neukládá do nastavení - funguje pouze pro aktuální prezentaci
+- Oprava přehrávání fotek v adresáři
 1.8
 - Lepší náhodnost adresářů a fotek (třída Random se neinstancuje s každým novým požadavkem na náhodné číslo)
 - Ošetření chyby při vykreslování EXIF (nevykreslovaly se všechny informace, protože to přestalo vykreslovat po chybě čtení jedné z nich)
