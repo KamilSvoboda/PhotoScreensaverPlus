@@ -249,7 +249,7 @@ namespace PhotoScreensaverPlus
         }
 
         /// <summary>
-        /// Vykreslení náhodné fotky
+        /// Vykreslení nové (náhodné/následující) fotky
         /// </summary>
         private void DrawOneOfImages()
         {
