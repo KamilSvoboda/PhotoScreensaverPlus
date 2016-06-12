@@ -1,4 +1,6 @@
-﻿1.10
+﻿1.11
+- Oprava načítání obrázků pro zjištění velikosti. Konzumovala se tam paměť
+1.10
 - Nastavení minimální velikosti obrázku
 1.9.
 - Nemažou z nastavení adresáře, které nebyly nalezeny (kvůli fotkám na dočasně odpojených discích)

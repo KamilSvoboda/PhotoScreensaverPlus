@@ -115,11 +115,20 @@ namespace PhotoScreensaverPlus.FilesAndFolders
                 foreach (string pattern in patterns)
                 {
                     images = dir.GetFiles(pattern);
-                    foreach (FileInfo image in images)
+                    foreach (FileInfo fileInfo in images)
                     {
-                        Image img = Image.FromFile(image.FullName);
-                        if (img.Height >= state.MinDimension & img.Width >= state.MinDimension)
-                            list.Add(image);
+                        using (FileStream file = new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read))
+                        {
+                            using (Image tif = Image.FromStream(stream: file,
+                                                                useEmbeddedColorManagement: false,
+                                                                validateImageData: false))
+                            {
+                                float width = tif.PhysicalDimension.Width;
+                                float height = tif.PhysicalDimension.Height;
+                                if (height >= state.MinDimension & width >= state.MinDimension)
+                                    list.Add(fileInfo);
+                            }
+                        }
                     }
                 }
 
